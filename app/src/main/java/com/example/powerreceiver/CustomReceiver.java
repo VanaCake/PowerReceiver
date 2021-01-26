@@ -25,7 +25,9 @@ public class CustomReceiver extends BroadcastReceiver {
                     toastMessage = "Custom Broadcast Received\n" + "Square of the Random Number: " + (int)(Math.pow((int)(Math.random()*20)+1,2));
                     break;
                 case Intent.ACTION_HEADSET_PLUG:
-                    toastMessage = "Headset plugged in";
+                    int state = intent.getIntExtra("state", -1);
+                    if(state == 0) toastMessage = "Headset unplugged";
+                    if(state == 1) toastMessage = "Headset plugged";
                     break;
             }
             Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
